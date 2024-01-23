@@ -1,33 +1,57 @@
 from django.urls import path
 
 from .views import (
-    GiftCollectingView,
+    GuestCreateView,
+    GiftCreateView,
     GiftListView,
-    GiftDetailView,
+    GuestdetailView,
+    GiftItemUpdate,
+    GiftRemoveView,
     GiftUpdateView,
-    GiftDeleteView,
 )
 
 
 urlpatterns = [
-    # POST: localhost/collection/take/
+    #POST localhost/collection/guest-add/
     path(
-        route="take/", view=GiftCollectingView.as_view(), name="gift-collecting"
+        route="guest-add/", 
+        view=GuestCreateView.as_view(), 
+        name="guest_add"
     ),
-    # GET: localhost/collection/list/
-    path(
-        route="list/", view=GiftListView.as_view(), name="gift-list"
+
+    #POST localhost/collection/gift-add/
+    path(route="gift-add/", 
+        view=GiftCreateView.as_view(), 
+        name="gift_add"
     ),
-    # GET: localhost/collection/detail/id/
-    path(
-        route="detail/<int:guest_id>/", view=GiftDetailView.as_view(), name="gift-detail"
+
+    #GET localhost/collection/gift-list/
+    path(route="gift-list/", 
+        view=GiftListView.as_view(), 
+        name="gift_list"
     ),
-    # PATCH: localhost/collection/update/id/
-    path(
-        route="update/<int:guest_id>/", view=GiftUpdateView.as_view(), name="gift-update"
+
+    #GET localhost/collection/guest-detail/1/
+    path(route="guest-detail/<int:pk>/", 
+        view=GuestdetailView.as_view(), 
+        name="guest_detail"
     ),
-    # PATCH: localhost/collection/delete/id/
-    path(
-        route="delete/<int:guest_id>/", view=GiftDeleteView.as_view(), name="gift-delete"
+
+    #PATCH localhost/collection/gift-item-update/1/
+    path(route="gift-item-update/<int:pk>/", 
+        view=GiftItemUpdate.as_view(), 
+        name="gift_item_update"
+    ),
+
+    #DELETE localhost/collection/gift-delete/1/
+    path(route="gift-delete/<int:pk>/", 
+        view=GiftRemoveView.as_view(), 
+        name="gift_delete"
+    ),
+
+    #PUT localhost/collection/gift-update/1/
+    path(route="gift-update/<int:pk>/", 
+        view=GiftUpdateView.as_view(), 
+        name="gift_update"
     ),
 ]

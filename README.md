@@ -1,29 +1,50 @@
 # Wedding-gift
 
-## provides APIs
-0. POST method `localhost/collection/take/` API for collecting gift.
+## APs For collecting guest data and collecting gift
+1. POST Method `localhost/collection/guest-add/` for added new guest data:
 ```bash
 {
-  "name":"example",
-  "gender":"F",
-  "amount":5000,
-  "item":"TK"
+  "name":"...",
+  "email":"example@gmail.com",
+  "relationship":"friend",
+  "gender":"male",
+  "address":"Mohammadpur Dhaka-1209"
 }
 ```
-1. GET method `localhost/collection/list/` API for see Collection list.
-2. GET method `localhost/collection/detail/id/` API for see particular guest detail.
-3. PATCH method `localhost/collection/update/id/` API for amount and item update.
+2. POST Method `localhost/collection/gift-add/` for collecting gift:
 ```bash
 {
-  "amount":5000,
-  "item":"TK"
+  "otp":"...",
+  "email":"example@gmail.com",
+  "amount":15000,
+  "item":"tk + dinner set"
 }
 ```
-4. DELETE method `localhost/collection/delete/id/` for delete particular guest.
-5. PATCH method  `localhost/collection/update/id/` API for guest name and gender update.
+3. POST Method `localhost/otp/send/` for send otp:
 ```bash
 {
-  "name":"example",
-  "gender":"F",
+  "email":"example@gmail.com"
 }
 ```
+
+
+## APIs
+
+1. GET Method `localhost/collection/gift-list/` for gift list.
+
+2. GET Method `localhost/collection/guest-detail/id/` for particular guest detail with gift.
+
+3. PATCH Method `localhost/collection/gift-item-update/id/` for updating particular guest's gift item and amount:
+
+```bash
+{
+  "amount":21000,
+  "item":"TK + Table"
+}
+```
+
+4. DELETE Method `localhost/collection/gift-delete/id/` for return gift list with guest detail.
+
+5. PUT Method `localhost/collection/gift-update/id/` for particular gift detail update.
+
+`Note: Here id means guest id`
