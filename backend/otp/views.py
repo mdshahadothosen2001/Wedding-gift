@@ -37,7 +37,7 @@ class SentOTPView(APIView):
             
             if len(previous_OTP) == 0:
                 otp_send(email)
-                return Response("You check OTP at your terminal or email inbox")
+                return Response("You check OTP at your terminal or email inbox ")
             else:
                 previous_OTP.delete()
                 otp_send(email)

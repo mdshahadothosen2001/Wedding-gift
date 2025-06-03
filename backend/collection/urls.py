@@ -8,6 +8,7 @@ from .views import (
     GiftItemUpdate,
     GiftRemoveView,
     GiftUpdateView,
+    GuestListView,
 )
 
 
@@ -53,5 +54,10 @@ urlpatterns = [
     path(route="gift-update/<int:pk>/", 
         view=GiftUpdateView.as_view(), 
         name="gift_update"
+    ),
+    #GET localhost/collection/guest-list/
+    path(route="guest-list/", 
+        view=GuestListView.as_view(), 
+        name="guest_list"
     ),
 ]

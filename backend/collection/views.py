@@ -41,6 +41,16 @@ class GuestCreateView(APIView):
             return Response("Successfull added")
 
         return Response("Please provide valid data")
+    
+class GuestListView(APIView):
+    """This class used for getting all guest data"""
+
+    permission_classes = [AllowAny]
+
+    def get(self, request, *args, **kwargs):
+        guests = get_list_or_404(GuestModel)
+        seriazer = GuestSerializer(guests, many=True)
+        return Response(seriazer.data)
 
 
 class GiftCreateView(APIView):
@@ -91,7 +101,8 @@ class GiftListView(APIView):
             guest = get_list_or_404(GuestModel, id=gift.guest_id)
 
             gifts_list += [
-                {
+                {   
+                    "id":gift.id,
                     "guest_id":guest[0].id,
                     "guest":guest[0].name,
                     "item":gift.item,
